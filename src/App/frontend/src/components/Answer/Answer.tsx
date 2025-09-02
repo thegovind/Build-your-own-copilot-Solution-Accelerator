@@ -12,6 +12,16 @@ import supersub from 'remark-supersub'
 import { AskResponse, Citation, Feedback, historyMessageFeedback } from '../../api'
 import { XSSAllowTags } from '../../constants/xssAllowTags'
 import { AppStateContext } from '../../state/AppProvider'
+import { ProductFlow, WarrantyFlow } from '../ZavaFlows'
+import { 
+  extractProductInfo, 
+  extractWarrantyInfo, 
+  getFlowType,
+  createBackorder,
+  reserveProduct,
+  createRMA,
+  generateReturnLabel
+} from '../../helpers/zava/flowHelpers'
 
 import { parseAnswer } from './AnswerParser'
 
@@ -45,6 +55,11 @@ export const Answer = ({ answer, onCitationClicked }: Props) => {
   const FEEDBACK_ENABLED =
     appStateContext?.state.frontendSettings?.feedback_enabled && appStateContext?.state.isCosmosDBAvailable?.cosmosDB
   const SANITIZE_ANSWER = appStateContext?.state.frontendSettings?.sanitize_answer
+
+  // Zava flow detection
+  const flowType = useMemo(() => getFlowType(answer.answer), [answer.answer])
+  const productInfo = useMemo(() => flowType === 'product' ? extractProductInfo(answer.answer) : null, [answer.answer, flowType])
+  const warrantyInfo = useMemo(() => flowType === 'warranty' ? extractWarrantyInfo(answer.answer) : null, [answer.answer, flowType])
 
   const handleChevronClick = () => {
     setChevronIsExpanded(!chevronIsExpanded)
@@ -311,6 +326,28 @@ export const Answer = ({ answer, onCitationClicked }: Props) => {
             </Stack.Item>
           </Stack>
         </Stack.Item>
+
+        {/* Zava Quick Actions */}
+        {flowType === 'product' && productInfo && (
+          <Stack.Item>
+            <ProductFlow
+              productInfo={productInfo}
+              onBackorder={createBackorder}
+              onReserve={reserveProduct}
+            />
+          </Stack.Item>
+        )}
+        
+        {flowType === 'warranty' && warrantyInfo && (
+          <Stack.Item>
+            <WarrantyFlow
+              warrantyInfo={warrantyInfo}
+              onCreateRMA={createRMA}
+              onGenerateLabel={generateReturnLabel}
+            />
+          </Stack.Item>
+        )}
+
         <Stack horizontal className={styles.answerFooter}>
           {!!parsedAnswer.citations.length && (
             <Stack.Item data-testid="stack-item" onKeyDown={e => (e.key === 'Enter' || e.key === ' ' ? toggleIsRefAccordionOpen() : null)}>

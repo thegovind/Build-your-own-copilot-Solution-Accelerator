@@ -12,9 +12,9 @@ export type PromptType = {
 }
 
 const promptsConfg = [
-  { name: 'Top discussion trends', question: 'Top discussion trends', key: 'p1' },
-  { name: 'Investment summary', question: 'Investment summary', key: 'p2' },
-  { name: 'Previous meeting summary', question: 'Previous meeting summary', key: 'p3' }
+  { name: 'Check product availability', question: '/check-inventory', key: 'p1' },
+  { name: 'Warranty lookup', question: '/warranty-check', key: 'p2' },
+  { name: 'Create RMA', question: '/create-rma', key: 'p3' }
 ]
 
 export const PromptsSection: React.FC<PromptsSectionProps> = ({ onClickPrompt, isLoading }) => {
