@@ -7,6 +7,7 @@ import { isEmpty } from 'lodash'
 
 import styles from './Chat.module.css'
 import TeamAvatar from '../../assets/TeamAvatar.svg'
+import ZavaLogo from '../../assets/ZavaLogo.svg'
 
 import {
   getUserInfo,
@@ -683,7 +684,12 @@ const Chat = (props: any) => {
           <div className={styles.chatContainer}>
             {!messages || messages.length < 1 ? (
               <Stack className={styles.chatEmptyState}>
-                <img src={ui?.chat_logo ? ui.chat_logo : TeamAvatar} className={styles.chatIcon} aria-hidden="true" />
+                <img 
+                  src={ui?.chat_logo ? ui.chat_logo : ZavaLogo} 
+                  className={styles.chatIcon} 
+                  aria-hidden="true" 
+                  alt="Zava Assistant" 
+                />
                 <h1 className={styles.chatEmptyStateTitle}>{ui?.chat_title}</h1>
                 <h3 className={styles.chatEmptyStateSubtitle}>{ui?.chat_description}</h3>
               </Stack>

@@ -1,73 +1,178 @@
+.questionInputWrapper {
+  position: relative;
+  width: 100%;
+}
+
 .questionInputContainer {
-  height: 120px;
-  position: absolute;
-  left: 6.5%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-  background: #ffffff;
+  height: auto;
+  min-height: 56px;
+  position: relative;
+  background: var(--zava-white);
   box-shadow:
     0px 8px 16px rgba(0, 0, 0, 0.14),
     0px 0px 2px rgba(0, 0, 0, 0.12);
-  border-radius: 8px;
+  border-radius: 12px;
+  border: 1px solid var(--zava-medium-gray);
+  transition: border-color 0.2s ease;
+}
+
+.questionInputContainer:focus-within {
+  border-color: var(--zava-accent);
+  box-shadow: 
+    0px 8px 16px rgba(0, 0, 0, 0.14),
+    0px 0px 2px rgba(0, 0, 0, 0.12),
+    0 0 0 1px var(--zava-accent);
 }
 
 .questionInputTextArea {
   width: 100%;
-  line-height: 40px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 12px;
-  margin-right: 12px;
+  padding: 16px 56px 16px 16px;
+  font-size: 14px;
+  line-height: 1.4;
+  border: none;
+  border-radius: 12px;
+  resize: none;
+  min-height: 24px;
+  max-height: 120px;
+}
+
+.questionInputTextArea textarea {
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-family: 'Segoe UI', sans-serif !important;
+  font-size: 14px !important;
 }
 
 .questionInputSendButtonContainer {
   position: absolute;
-  right: 24px;
-  bottom: 20px;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.questionInputSendButtonContainer:hover {
+  background-color: var(--zava-light-gray);
 }
 
 .questionInputSendButton {
-  width: 24px;
-  height: 23px;
+  width: 20px;
+  height: 20px;
+  filter: hue-rotate(0deg) brightness(1);
 }
 
 .questionInputSendButtonDisabled {
-  /* opacity: 0.4; */
-  width: 24px;
-  height: 23px;
-  background: none;
-  color: #424242;
+  width: 20px;
+  height: 20px;
+  color: var(--zava-dark-gray);
+  opacity: 0.5;
 }
 
 .questionInputBottomBorder {
   position: absolute;
   width: 100%;
-  height: 4px;
+  height: 3px;
   left: 0%;
   bottom: 0%;
-  background: radial-gradient(106.04% 106.06% at 100.1% 90.19%, #0f6cbd 33.63%, #8dddd8 100%);
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  background: linear-gradient(90deg, var(--zava-accent) 0%, var(--zava-accent-light) 100%);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
-.questionInputOptionsButton {
+.questionInputContainer:focus-within .questionInputBottomBorder {
+  opacity: 1;
+}
+
+/* Slash commands dropdown */
+.slashCommandsDropdown {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background: var(--zava-white);
+  border: 1px solid var(--zava-medium-gray);
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  margin-bottom: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.slashCommandItem {
+  padding: 12px 16px;
   cursor: pointer;
-  width: 27px;
-  height: 30px;
+  border-bottom: 1px solid var(--zava-light-gray);
+  transition: background-color 0.2s ease;
 }
 
-@media (max-width: 480px) {
+.slashCommandItem:hover {
+  background-color: var(--zava-light-gray);
+}
+
+.slashCommandItem:last-child {
+  border-bottom: none;
+}
+
+.slashCommandText {
+  color: var(--zava-accent);
+  font-weight: 600;
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+}
+
+.slashCommandDescription {
+  color: var(--zava-dark-gray);
+  margin-top: 2px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
   .questionInputContainer {
-    left: 16.5%;
+    border-radius: 8px;
+    min-height: 48px;
+  }
+  
+  .questionInputTextArea {
+    padding: 12px 48px 12px 12px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .questionInputSendButtonContainer {
+    right: 8px;
+    padding: 6px;
+  }
+  
+  .questionInputSendButton,
+  .questionInputSendButtonDisabled {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .slashCommandsDropdown {
+    max-height: 150px;
+  }
+  
+  .slashCommandItem {
+    padding: 10px 12px;
   }
 }
 
 @media screen and (-ms-high-contrast: active), (forced-colors: active) {
-
-  .questionInputContainer{
+  .questionInputContainer {
     border: 2px solid WindowText;
     background-color: Window;
     color: WindowText;
+  }
+  
+  .slashCommandsDropdown {
+    border: 2px solid WindowText;
+    background-color: Window;
   }
 }

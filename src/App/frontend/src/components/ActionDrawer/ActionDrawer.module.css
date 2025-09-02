@@ -1,0 +1,156 @@
+.actionPanel {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.panelContent {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+}
+
+.description {
+  color: var(--zava-dark-gray);
+  line-height: 1.5;
+}
+
+.progressContainer {
+  background-color: var(--zava-light-gray);
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 4px solid var(--zava-accent);
+}
+
+.progressTitle {
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--zava-primary);
+}
+
+.progressSteps {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.progressStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 80px;
+  text-align: center;
+}
+
+.progressDot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  background-color: var(--zava-medium-gray);
+  color: var(--zava-dark-gray);
+  transition: all 0.3s ease;
+}
+
+.progressDot.completed {
+  background-color: var(--zava-accent);
+  color: var(--zava-white);
+}
+
+.progressLabel {
+  color: var(--zava-dark-gray);
+  max-width: 80px;
+  word-wrap: break-word;
+}
+
+.messageBar {
+  margin-bottom: 16px;
+}
+
+.fieldsContainer {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.selectField {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--zava-medium-gray);
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--zava-white);
+}
+
+.selectField:focus {
+  outline: none;
+  border-color: var(--zava-accent);
+  box-shadow: 0 0 0 1px var(--zava-accent);
+}
+
+.fieldDescription {
+  color: var(--zava-dark-gray);
+  font-style: italic;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid var(--zava-medium-gray);
+  margin-top: auto;
+}
+
+.submitButton {
+  background-color: var(--zava-accent) !important;
+  border-color: var(--zava-accent) !important;
+  color: var(--zava-white) !important;
+}
+
+.submitButton:hover {
+  background-color: var(--zava-accent-dark) !important;
+  border-color: var(--zava-accent-dark) !important;
+}
+
+.submitButton:disabled {
+  background-color: var(--zava-medium-gray) !important;
+  border-color: var(--zava-medium-gray) !important;
+  color: var(--zava-dark-gray) !important;
+}
+
+.spinner {
+  margin-left: 8px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .panelContent {
+    padding: 16px;
+  }
+  
+  .progressSteps {
+    gap: 12px;
+  }
+  
+  .progressStep {
+    min-width: 60px;
+  }
+  
+  .progressDot {
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+  }
+  
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
