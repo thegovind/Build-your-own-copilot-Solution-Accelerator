@@ -16,13 +16,13 @@ class Config:
     def __init__(self):
 
         # UI configuration (optional)
-        self.UI_TITLE = os.environ.get("UI_TITLE") or "Woodgrove Bank"
+        self.UI_TITLE = os.environ.get("UI_TITLE") or "Zava Copilot"
         self.UI_LOGO = os.environ.get("UI_LOGO")
         self.UI_CHAT_LOGO = os.environ.get("UI_CHAT_LOGO")
-        self.UI_CHAT_TITLE = os.environ.get("UI_CHAT_TITLE") or "Start chatting"
+        self.UI_CHAT_TITLE = os.environ.get("UI_CHAT_TITLE") or "How can I help you today?"
         self.UI_CHAT_DESCRIPTION = (
             os.environ.get("UI_CHAT_DESCRIPTION")
-            or "This chatbot is configured to answer your questions"
+            or "I can help with product info, inventory checks, warranties, and returns"
         )
         self.UI_FAVICON = os.environ.get("UI_FAVICON") or "/favicon.ico"
         self.UI_SHOW_SHARE_BUTTON = (

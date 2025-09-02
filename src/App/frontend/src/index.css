@@ -1,3 +1,15 @@
+:root {
+  /* Zava Brand Colors */
+  --zava-primary: #111;
+  --zava-accent: #FF4D00;
+  --zava-light-gray: #f5f5f5;
+  --zava-medium-gray: #e5e5e5;
+  --zava-dark-gray: #666;
+  --zava-white: #ffffff;
+  --zava-accent-light: #ff6b2a;
+  --zava-accent-dark: #e6440e;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -10,7 +22,7 @@ body {
 }
 
 html {
-  background: #f2f2f2;
+  background: var(--zava-light-gray);
   font-family:
     'Segoe UI',
     'Segoe UI Web (West European)',
@@ -22,6 +34,7 @@ html {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
 }
 
 #root {
